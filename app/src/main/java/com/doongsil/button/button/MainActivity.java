@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewManager;
@@ -27,21 +30,29 @@ public class MainActivity extends AppCompatActivity {
     Menu2 Menu2;
     Menu3 Menu3;
     Menu4 Menu4;
-
+    RecyclerView recyclerView;
+    RecyclerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // 상단 툴바
         toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
+
+        // 하단 네비게이션
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         BottomNavigationViewHelper.removeShiftMode(navigation);
+
         Menu1 = new Menu1();
         Menu2 = new Menu2();
         Menu3 = new Menu3();
         Menu4 = new Menu4();
         setFrag(0);
+
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener
